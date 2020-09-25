@@ -25,8 +25,8 @@ if __name__ == '__main__':
     relation_pre_result = []  # 存储关系预测结果
     test_num = 0  # 测试的事实的数目
 
-    entity2id = load_enorrel2id(Config.data, 'entity2id.txt')
-    relation2id = load_enorrel2id(Config.data, 'relation2id.txt')
+    entity2id = load_enorrel2id(Config.data, 'ent2id.txt')
+    relation2id = load_enorrel2id(Config.data, 'rel2id.txt')
     Run = run(1)
 
     Run.train(train_SKG, -1, entity2id, relation2id,valid_SKG)  # 将模型在静态知识图谱上预训练,得到特征和初始参数。注，有些简单模型像TransE只有特征，没有参数；也有一些模型只调整参数，不改变输入特征
