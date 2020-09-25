@@ -2,7 +2,7 @@ import torch
 
 
 class Config:
-	data = 'data/'+'WIKI/'#训练哪个数据集可将YAGO改为WIKI
+	data = 'data/'+'gdelt/'#训练哪个数据集可将YAGO改为WIKI
 
 	#下面可存储与模型或训练有关的超参数
 	epochs = 100
