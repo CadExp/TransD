@@ -82,14 +82,14 @@ class run():
         # Set training dataloader iterator
         train_dataloader_head = DataLoader(
             TrainDataset(train_triples, self.nentity, self.nrelation, round(len(train_triples)*0.1), 'head-batch'),
-            batch_size=100,
+            batch_size=50,
             shuffle=True,
             num_workers=4,
             collate_fn=TrainDataset.collate_fn
         )
         train_dataloader_tail = DataLoader(
             TrainDataset(train_triples, self.nentity, self.nrelation, round(len(train_triples)*0.1), 'tail-batch'),
-            batch_size=100,
+            batch_size=50,
             shuffle=True,
             num_workers=4,
             collate_fn=TrainDataset.collate_fn
@@ -107,7 +107,7 @@ class run():
         # Training Loop
         starttime = Time.time()
         if time==-1:
-            steps = 3000*2
+            steps = 3000*4
             printnum = 100
         else:
             steps = 150
