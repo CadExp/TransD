@@ -19,10 +19,10 @@ class run():
         self.isCUDA = isCUDA
 
 
-    def save_model(self,model, optimizer, time):
+    def save_model(self,model, optimizer, time, step):
 
         save_path = "./result/model_"+str(time)+".pth"
-        state = {'net':model.state_dict(), 'optimizer':optimizer.state_dict(), 'time':time}
+        state = {'net':model.state_dict(), 'optimizer':optimizer.state_dict(), 'time':time, 'step':step}
 
         torch.save(state, save_path)
 
@@ -43,8 +43,9 @@ class run():
             lr=current_learning_rate
         )
         optimizer.load_state_dict(checkpoint['optimizer'])
+        step = checkpoint['step']
 
-        return model, optimizer
+        return model, optimizer, step
 
 
     def evaluate(self,valid_triples,all_true_triples,relation2id,entity2id,time):
@@ -77,8 +78,7 @@ class run():
             # )
         #else:
         #    temp = time - 1
-            self.kge_model, self.optimizer = self.load_model(time)
-            self.kge_model = self.kge_model.cuda()
+            self.kge_model, self.optimizer, step_loaded = self.load_model(time)
 
         # Set training dataloader iterator
         train_dataloader_head = DataLoader(
@@ -104,7 +104,7 @@ class run():
 
         #start training
         print("start training:%d"%time)
-        init_step = 0
+        init_step = step_loaded
         # Training Loop
         starttime = Time.time()
         if time==-1:
@@ -136,4 +136,4 @@ class run():
 
 
 
-            self.save_model(self.kge_model, self.optimizer, time)
+            self.save_model(self.kge_model, self.optimizer, time, step)
