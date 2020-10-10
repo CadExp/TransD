@@ -76,9 +76,11 @@ class run():
                 filter(lambda p: p.requires_grad, self.kge_model.parameters()),
                 lr=current_learning_rate
             )
+            init_step = 0
         #else:
         #    temp = time - 1
         #     self.kge_model, self.optimizer, step_loaded = self.load_model(time)
+        #     init_step = step_loaded
 
         # Set training dataloader iterator
         train_dataloader_head = DataLoader(
@@ -104,7 +106,6 @@ class run():
 
         #start training
         print("start training:%d"%time)
-        init_step = step_loaded
         # Training Loop
         starttime = Time.time()
         if time==-1:
