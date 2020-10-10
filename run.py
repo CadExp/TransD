@@ -87,14 +87,14 @@ class run():
             TrainDataset(train_triples, self.nentity, self.nrelation, round(len(train_triples)*0.1), 'head-batch'),
             batch_size=50,
             shuffle=False,
-            num_workers=0,
+            num_workers=2,
             collate_fn=TrainDataset.collate_fn
         )
         train_dataloader_tail = DataLoader(
             TrainDataset(train_triples, self.nentity, self.nrelation, round(len(train_triples)*0.1), 'tail-batch'),
             batch_size=50,
             shuffle=False,
-            num_workers=0,
+            num_workers=2,
             collate_fn=TrainDataset.collate_fn
         )
         warm_up_steps = 5000 // 2
