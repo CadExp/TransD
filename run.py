@@ -65,22 +65,22 @@ class run():
 
         current_learning_rate = 0.0001
         if time == -1:
-            self.kge_model = KGEModel(
-                ent_tot=self.nentity,
-                rel_tot=self.nrelation,
-                dim_e=50,
-                dim_r=50
-            )
-            self.kge_model = self.kge_model.cuda()
-            self.optimizer = torch.optim.Adam(
-                filter(lambda p: p.requires_grad, self.kge_model.parameters()),
-                lr=current_learning_rate
-            )
-            init_step = 0
+            # self.kge_model = KGEModel(
+            #     ent_tot=self.nentity,
+            #     rel_tot=self.nrelation,
+            #     dim_e=50,
+            #     dim_r=50
+            # )
+            # self.kge_model = self.kge_model.cuda()
+            # self.optimizer = torch.optim.Adam(
+            #     filter(lambda p: p.requires_grad, self.kge_model.parameters()),
+            #     lr=current_learning_rate
+            # )
+            # init_step = 0
         #else:
         #    temp = time - 1
-        #     self.kge_model, self.optimizer, step_loaded = self.load_model(time)
-        #     init_step = step_loaded
+            self.kge_model, self.optimizer, step_loaded = self.load_model(time)
+            init_step = step_loaded
 
         # Set training dataloader iterator
         train_dataloader_head = DataLoader(
