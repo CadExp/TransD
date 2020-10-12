@@ -37,7 +37,7 @@ class run():
             dim_r=50,
         )
         model.load_state_dict(checkpoint['net'])
-        self.kge_model = self.kge_model.cuda()
+        model = model.cuda()
         current_learning_rate = 0.0001
         optimizer = torch.optim.Adam(
             filter(lambda p: p.requires_grad, model.parameters()),
