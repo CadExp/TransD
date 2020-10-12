@@ -315,6 +315,7 @@ class KGEModel(nn.Module):
     def train_step(model, optimizer, train_iterator, isCUDA):
 
         model.train()
+        model = model.cuda()
         optimizer.zero_grad()
         positive_sample, negative_sample, subsampling_weight, mode = next(train_iterator)
 
