@@ -80,6 +80,7 @@ class run():
         #else:
         #    temp = time - 1
             self.kge_model, self.optimizer, step_loaded = self.load_model(time)
+            self.kge_model = self.kge_model.cuda()
             init_step = step_loaded
 
         # Set training dataloader iterator
