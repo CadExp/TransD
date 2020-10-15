@@ -82,6 +82,8 @@ class run():
         #    temp = time - 1
             self.kge_model, self.optimizer, step_loaded = self.load_model(time)
             init_step = step_loaded
+        else:
+            init_step = 0
 
         # Set training dataloader iterator
         train_dataloader_head = DataLoader(
